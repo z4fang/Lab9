@@ -66,6 +66,7 @@
                         
 
   <script>
+    
     let calculateBtn = document.querySelector('#calculate');
     calculateBtn.addEventListener('click', () => {
       let output = document.querySelector('output');
@@ -74,7 +75,7 @@
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
-
+    
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
     
@@ -151,6 +152,33 @@
     });
 
     
+
+
+    //custom error
+
+    
+    class CustomError extends Error {
+    constructor(message) {
+    super(message); // (1)
+    this.name = "DivByZero"; // (2)
+      }
+    }
+
+    let op = document.querySelector('#operator').value;
+    let num = document.querySelector('#second-num').value;
+
+    try{
+        //if(op == '/' && num == '0')
+        //{
+          throw new CustomError("Div by zero");
+        //}
+    }
+
+    catch(CustomError){
+
+    }
+
+
     window.onerror = function (msg) {
       console.error("Can't find number: boom")
       return true; 
