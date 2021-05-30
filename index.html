@@ -55,6 +55,16 @@
     <button>Trigger a Global Error</button>
   </section>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+  window.TrackJS && TrackJS.install({ 
+    token: "0ce6def55f3a466e9a6ccee67597e6c7"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+  </script>
+                        
+                        
+
   <script>
     let calculateBtn = document.querySelector('#calculate');
     calculateBtn.addEventListener('click', () => {
@@ -67,6 +77,103 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+    
+
+    errorBtns[0].addEventListener('click', ()=>{
+      console.log('Console Log Demo');
+
+    });
+
+    errorBtns[1].addEventListener('click', ()=>{
+      console.error('Console Error Demo');
+      
+    });
+
+    errorBtns[2].addEventListener('click', ()=>{
+      console.dir(errorBtns[2]);
+      
+    });
+
+    errorBtns[3].addEventListener('click', ()=>{
+      console.dirxml(document.body);
+      
+    });
+
+    errorBtns[4].addEventListener('click', ()=>{
+      console.group('Group');
+      
+    });
+
+    errorBtns[5].addEventListener('click', ()=>{
+      console.groupEnd('Group');
+      
+    });
+
+    errorBtns[6].addEventListener('click', ()=>{
+      console.table([{name: 'Software Engineering', num: '110'},{name: 'Theory of Computability', num: '105'},{name: 'Design and Analysis of Algorithms', num: '101'}]);
+      
+    });
+
+    errorBtns[7].addEventListener('click', ()=>{
+      console.log('Timer Started!');
+      console.time('Run Time');
+      
+    });
+
+    errorBtns[8].addEventListener('click', ()=>{
+      console.log('Timer Ended!');
+      console.timeEnd('Run Time');
+      
+    });
+
+
+
+    errorBtns[9].addEventListener('click', ()=>{
+      const traceTest = () => { deep(); };
+      const deep = () => { deeper(); };
+      const deeper = () => { deepest(); };
+      const deepest = () => { console.trace(); };
+      traceTest();
+      
+      
+    });
+
+    errorBtns[10].addEventListener('click', ()=>{
+
+      console.log('Sadly an error happened friend');
+      try{
+        throw new ReferenceError('Reference error,'); 
+      }
+      catch(error){ 
+        console.error(error); 
+      }
+      
+    });
+
+    
+    window.onerror = function (msg) {
+      console.error("Can't find number: boom")
+      return true; 
+    }
+
+    try {
+        user = JSON.parse(json);
+    } 
+  
+  catch (err) {
+    if (err instanceof SyntaxError) {
+      throw new ReadError("Syntax Error", err);
+    } else {
+      throw err;
+    }
+  }
+
+    TrackJS.track('Testing TrackJS!');
+
+                        
+
+
+
   </script>
 </body>
 </html>
